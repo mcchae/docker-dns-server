@@ -20,3 +20,8 @@ services:
     - ${PWD}/dhv/bind:/data
 ```
 
+## 테스트
+
+```sh
+$ dig @localhost google.com
+```
