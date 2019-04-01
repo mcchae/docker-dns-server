@@ -1,12 +1,12 @@
 #FROM sameersbn/bind:9.11.3-20190113
-FROM ubuntu:bionic-20190307 AS add-apt-repositories
+FROM ubuntu:18.04 AS add-apt-repositories
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg \
  && apt-key adv --fetch-keys http://www.webmin.com/jcameron-key.asc \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
 
-FROM ubuntu:bionic-20190307
+FROM ubuntu:18.04
 
 LABEL maintainer="sameer@damagehead.com"
 
@@ -16,7 +16,6 @@ ENV BIND_USER=bind \
     DATA_DIR=/data
 
 COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
-
 COPY --from=add-apt-repositories /etc/apt/sources.list /etc/apt/sources.list
 
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
@@ -31,12 +30,10 @@ RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y tcpdump
 
 COPY entrypoint.sh /sbin/entrypoint.sh
-
 RUN chmod 755 /sbin/entrypoint.sh
 
 EXPOSE 53/udp 53/tcp 10000/tcp
 
 ENTRYPOINT ["/sbin/entrypoint.sh"]
-
 CMD ["/usr/sbin/named"]
 
