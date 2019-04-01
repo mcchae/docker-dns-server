@@ -1,24 +1,3 @@
-Skip to content
-Why GitHub? 
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-
-Sign in
-Sign up
-37 479 190 sameersbn/docker-bind
- Code  Issues 2  Pull requests 4  Projects 0  Insights
-Join GitHub today
-GitHub is home to over 31 million developers working together to host and review code, manage projects, and build software together.
-
-docker-bind/entrypoint.sh
-9bd81a5  on Jan 15, 2017
-@sameersbn sameersbn remove whitespaces
-@sameersbn @Seth-Miller @acaranta
-     
-Executable File  84 lines (69 sloc)  1.87 KB
 #!/bin/bash
 set -e
 
